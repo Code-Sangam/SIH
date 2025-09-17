@@ -1,0 +1,193 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Chat - Saṅgam</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+			/* Ensure chat filter dropdown is visible and positioned correctly */
+			.filter-container { position: relative; }
+			.filter-dropdown { position: absolute; right: 0; top: 42px; z-index: 9999; }
+
+			/* Remove extra bottom space just on chat page */
+			body.chat-tight #page-wrapper { padding-bottom: 0 !important; }
+			body.chat-tight .with-side-rail { padding-top: 0; }
+			body.chat-tight .with-side-rail .chat-container { height: calc(100vh - 3.5em); margin-top: 0; }
+
+			/* Keep input pinned to bottom; messages scroll */
+			body.chat-tight .chat-area { display: flex; flex-direction: column; height: 100%; }
+			body.chat-tight #active-chat { display: flex; flex-direction: column; height: 100%; }
+			body.chat-tight .chat-messages { flex: 1 1 auto; overflow-y: auto; margin: 0; }
+
+			/* Center input row content and icon; remove bottom gap */
+			body.chat-tight .chat-input-area { 
+				margin-top: auto; 
+				margin-bottom: 0 !important; 
+				padding: 0.75rem 1rem 0.5rem 1rem; 
+				display: flex; 
+				align-items: center; 
+				gap: 0.75rem;
+			}
+			body.chat-tight .chat-input-area input {
+				height: 46px;
+				box-sizing: border-box;
+				display: block;
+			}
+			body.chat-tight #send-message {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				width: 46px;
+				height: 46px;
+				padding: 0;
+				border-radius: 23px;
+			}
+			body.chat-tight #send-message .icon { 
+				font-size: 1rem; 
+				line-height: 1; 
+			}
+
+			/* Side nav settings icon (icon-only, pinned to bottom) */
+			#side-rail .icon-nav { display: flex; flex-direction: column; height: 100%; }
+			#side-rail .icon-nav .push-bottom { margin-top: auto; }
+			#side-rail .icon-nav .settings-only .label { display: none; }
+			#side-rail .icon-nav .settings-only a { display:inline-flex; width:46px; height:46px; align-items:center; justify-content:center; padding:0; }
+		</style>
+	</head>
+	<body class="is-preload theme-dark chat-tight">
+		<div id="page-wrapper">
+
+			<!-- Global Topbar and Side Rail -->
+			<div class="topbar">
+				<button id="global-hamburger" class="hamburger icon solid fa-bars">&nbsp;</button>
+				<div class="brand"><img src="images/sangam-logo.svg" alt="SANGAM" style="height: 30px;"></div>
+			</div>
+			<nav id="side-rail">
+				<ul id="common-side-nav" class="icon-nav">
+					<li><a href="chat.html" class="active"><span class="icon solid fa-comments"></span><span class="label">Chat</span></a></li>
+					<li><a href="alumni-list.html"><span class="icon solid fa-user-tie"></span><span class="label">Alumni</span></a></li>
+					<li><a href="student-list.html"><span class="icon solid fa-user-graduate"></span><span class="label">Students</span></a></li>
+					<li><a href="projects.html"><span class="icon solid fa-project-diagram"></span><span class="label">Projects</span></a></li>
+					<li><a href="#" id="profile-link"><span class="icon solid fa-id-badge"></span><span class="label">Profile</span></a></li>
+					<li class="push-bottom settings-only"><a href="settings.html" title="Settings"><span class="icon solid fa-cog"></span></a></li>
+				</ul>
+			</nav>
+			<div class="with-side-rail">
+				<div class="chat-container">
+					<!-- Messages Sidebar -->
+					<div class="messages-sidebar">
+						<div class="search-filter-section">
+							<div class="search-container">
+								<input type="text" placeholder="Search" class="search-input" />
+							</div>
+							<div class="filter-container">
+								<button id="message-filter" class="filter-btn" title="Filter Messages">
+									<i class="icon solid fa-filter"></i>
+								</button>
+								<div class="filter-dropdown" id="filter-dropdown" style="display: none;">
+									<div class="filter-option" data-value="all">All Messages</div>
+									<div class="filter-option" data-value="unread">Unread</div>
+									<div class="filter-option" data-value="read">Read</div>
+									<div class="filter-option" data-value="starred">Starred</div>
+									<div class="filter-option" data-value="active">Active</div>
+								</div>
+							</div>
+						</div>
+						
+						<div class="messages-list" id="messages-list">
+							<!-- Messages will be populated here -->
+						</div>
+					</div>
+					
+					<!-- Chat Area -->
+					<div class="chat-area">
+						<div class="no-chat-selected" id="no-chat-selected">
+							<div class="chat-icon">
+								<i class="icon solid fa-comments"></i>
+							</div>
+							<h3>Your messages</h3>
+							<p>Send a message to start a chat.</p>
+						</div>
+						
+						<div class="active-chat" id="active-chat" style="display: none;">
+							<div class="chat-header">
+								<div class="chat-user-info">
+									<div class="user-avatar"></div>
+									<div class="user-details">
+										<h4 id="chat-user-name">Alumni Name</h4>
+										<span id="chat-user-status">Online</span>
+									</div>
+								</div>
+							</div>
+							
+							<div class="chat-messages" id="chat-messages">
+								<!-- Messages will appear here -->
+							</div>
+							
+							<div class="chat-input-area">
+								<input type="text" id="chat-input" placeholder="Type a message..." />
+								<button id="send-message" class="button primary" aria-label="Send message"><span class="icon solid fa-paper-plane"></span></button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Floating Profile Window -->
+			<div id="profile-modal" class="profile-modal" style="display: none;">
+				<div class="profile-modal-content">
+					<div class="profile-modal-header">
+						<h3>Profile Details</h3>
+						<button id="close-profile-modal" class="close-btn">&times;</button>
+					</div>
+					<div class="profile-modal-body">
+						<div class="profile-info">
+							<div class="profile-avatar-large">
+								<img id="profile-avatar-img" src="" alt="Profile Picture" />
+								<div id="profile-avatar-initial" class="avatar-initial"></div>
+							</div>
+							<h2 id="profile-name">Isha Kapoor</h2>
+							<p id="profile-role">Software Engineer</p>
+							<p id="profile-location">Mumbai, India</p>
+							<p id="profile-description">Passionate about technology and innovation. Always eager to help fellow alumni and students.</p>
+						</div>
+						
+						<div class="profile-stats">
+							<div class="stat-item">
+								<span class="stat-number" id="profile-followers">245</span>
+								<span class="stat-label">Followers</span>
+							</div>
+							<div class="stat-item">
+								<span class="stat-number" id="profile-following">89</span>
+								<span class="stat-label">Following</span>
+							</div>
+							<div class="stat-item">
+								<span class="stat-number" id="profile-posts">12</span>
+								<span class="stat-label">Posts</span>
+							</div>
+						</div>
+
+						<div class="profile-projects">
+							<h3>Projects</h3>
+							<div id="profile-projects-list" class="projects-grid">
+								<!-- Projects will be populated here -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+		</div>
+
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+		<script src="assets/js/portal.js"></script>
+		<script src="assets/js/chat.js"></script>
+		<!-- Filter interactions are handled by assets/js/portal.js to avoid duplicate bindings -->
+	</body>
+</html>

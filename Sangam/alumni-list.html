@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Alumni - Saṅgam</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<style>
+			#side-rail .icon-nav { display:flex; flex-direction:column; height:100%; }
+			#side-rail .icon-nav .push-bottom { margin-top:auto; }
+			#side-rail .icon-nav .settings-only .label { display:none; }
+			#side-rail .icon-nav .settings-only a { display:inline-flex; width:46px; height:46px; align-items:center; justify-content:center; padding:0; }
+		</style>
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper">
+
+			<!-- Global Topbar and Side Rail -->
+			<div class="topbar">
+				<button id="global-hamburger" class="hamburger icon solid fa-bars">&nbsp;</button>
+				<div class="brand"><img src="images/sangam-logo.svg" alt="SANGAM" style="height: 30px;"></div>
+			</div>
+			<nav id="side-rail">
+				<ul id="common-side-nav" class="icon-nav">
+					<li><a href="chat.html"><span class="icon solid fa-comments"></span><span class="label">Chat</span></a></li>
+					<li><a href="alumni-list.html" class="active"><span class="icon solid fa-user-tie"></span><span class="label">Alumni</span></a></li>
+					<li><a href="student-list.html"><span class="icon solid fa-user-graduate"></span><span class="label">Students</span></a></li>
+					<li><a href="projects.html"><span class="icon solid fa-project-diagram"></span><span class="label">Projects</span></a></li>
+					<li><a href="#" id="profile-link"><span class="icon solid fa-id-badge"></span><span class="label">Profile</span></a></li>
+					<li class="push-bottom settings-only"><a href="settings.html" title="Settings"><span class="icon solid fa-cog"></span><span class="label">Settings</span></a></li>
+				</ul>
+			</nav>
+			<div class="with-side-rail">
+				<section class="wrapper style1" style="padding-top:2rem;padding-bottom:2rem;">
+					<div class="container">
+						<header class="major">
+							<h2>Alumni</h2>
+							<p>Discover alumni across locations and roles</p>
+						</header>
+						<div id="alumni-cards" class="row gtr-25"></div>
+					</div>
+				</section>
+			</div>
+
+			<footer id="footer">
+				<ul class="icons">
+					<li><a href="#" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>
+				</ul>
+				<ul class="copyright">
+					<li>&copy; Untitled. All rights reserved.</li>
+				</ul>
+			</footer>
+
+		</div>
+
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+		<script src="assets/js/portal.js"></script>
+	</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Sign Up - Step 01 - Saṅgam</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper">
+
+			<header id="header">
+				<h1 id="logo"><a href="index.html"><img src="images/sangam-logo.svg" alt="SANGAM" style="height: 30px;"></a></h1>
+				<nav id="nav">
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="login.html">Login</a></li>
+					</ul>
+				</nav>
+			</header>
+
+			<section class="wrapper style1 special" style="padding-top:4rem;padding-bottom:4rem;">
+				<div class="container">
+					<header class="major">
+						<h2>Sign Up</h2>
+						<p>Step 01: Choose your role</p>
+					</header>
+					<div class="box" style="max-width:720px;margin:0 auto;">
+						<form id="signup-step01" onsubmit="return false;">
+							<div class="row gtr-uniform gtr-50">
+								<div class="col-12">
+									<label>I'm signing up as</label>
+									<div class="row gtr-25">
+										<div class="col-6 col-12-small"><input type="radio" id="role-student" name="userType" value="student" checked><label for="role-student">Student</label></div>
+										<div class="col-6 col-12-small"><input type="radio" id="role-alumni" name="userType" value="alumni"><label for="role-alumni">Alumni</label></div>
+									</div>
+								</div>
+								<div class="col-12"><button id="signup-step01-next" class="button primary fit">Continue</button></div>
+							</div>
+						</form>
+						<p style="margin-top:1rem;">Next, you'll fill your basic details.</p>
+					</div>
+				</div>
+			</section>
+
+			<footer id="footer">
+				<ul class="icons">
+					<li><a href="#" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>
+				</ul>
+				<ul class="copyright">
+					<li>&copy; Untitled. All rights reserved.</li>
+				</ul>
+			</footer>
+
+		</div>
+
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+		<script>
+			(function(){
+				document.addEventListener('DOMContentLoaded', function(){
+					var btn = document.getElementById('signup-step01-next');
+					if(btn){
+						btn.addEventListener('click', function(){
+							var isStudent = document.getElementById('role-student').checked;
+							window.location.href = isStudent ? 'student-signup.html' : 'alumni-signup.html';
+						});
+					}
+				});
+			})();
+		</script>
+	</body>
+</html>
+

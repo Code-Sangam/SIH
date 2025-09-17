@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>readme.html</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body>
+<pre># Alumni Platform (HTML5UP Saṅgam)
+
+This project includes the original HTML5UP Saṅgam template plus new pages and a minimal backend for a government-verified alumni platform prototype.
+
+## Contents
+- Student Signup: `student-signup.html`
+- Alumni Signup: `alumni-signup.html`
+- Login: `login.html`
+- Frontend JS: `assets/js/auth.js`
+- Backend: `server.js` (Express), `package.json`
+- Data stores: MongoDB (Mongoose) and SQLite (`auth.sqlite`)
+
+---
+
+## Prerequisites
+- Node.js LTS (includes npm)
+- MongoDB running locally (or a cloud URI)
+- Windows PowerShell for the commands below
+
+## Setup
+
+1) Open the folder in a terminal
+```powershell
+  cd &quot;C:\Users\nikhi\Desktop\Hackathon Projects\html5up-landed&quot;
+```
+
+2) Optional: Create `.env`
+```ini
+PORT=3000
+MONGO_URI=mongodb://127.0.0.1:27017/alumni_platform
+```
+
+3) Allow npm in PowerShell (first time only)
+Run PowerShell as Administrator:
+```powershell
+Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
+```
+
+4) Install dependencies
+```powershell
+npm install
+```
+
+5) Start the server
+```powershell
+npm start
+```
+The site will be available at `http://localhost:3000/`.
+
+## Pages
+- Homepage: `http://localhost:3000/`
+- Student signup: `http://localhost:3000/student-signup.html`
+- Alumni signup: `http://localhost:3000/alumni-signup.html`
+- Login: `http://localhost:3000/login.html`
+
+## API Endpoints (used by `assets/js/auth.js`)
+- POST `/api/signup/student`
+  - Body JSON: `{ fullName, rollNo, collegeName, department, address, email?, mobile? }`
+- POST `/api/signup/alumni`
+  - Body JSON: `{ fullName, rollNo, collegeName, currentRole, address, email?, mobile? }`
+- POST `/api/login`
+  - Body JSON: `{ email?, mobile?, password? }`
+
+Note: For demo, login succeeds if a user exists by email or mobile.
+
+## Data Storage
+- MongoDB: main user collection (db: `alumni_platform`)
+- SQLite: `auth.sqlite` file with a simple `users` table
+
+## Troubleshooting
+- Execution policy error with npm: repeat step 3 in a new Admin PowerShell window.
+- MongoDB not running: install/start MongoDB or set `MONGO_URI` to a remote cluster.
+- Port in use: change `PORT` in `.env` and restart.
+
+## Clean Up
+- Stop the server (Ctrl+C)
+- Delete `auth.sqlite` to clear local SQL data (optional)
+
+---
+
+### Credits (HTML5UP Saṅgam)
+- Design: HTML5 UP — `https://html5up.net/`
+- Icons: Font Awesome
+- Scripts: jQuery, Scrollex, Responsive Tools
+</pre>
+</body>
+</html>

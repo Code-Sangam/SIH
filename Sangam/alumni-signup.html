@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Alumni Sign Up - Saṅgam</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper">
+
+			<header id="header">
+				<h1 id="logo"><a href="index.html"><img src="images/sangam-logo.svg" alt="SANGAM" style="height: 30px;"></a></h1>
+				<nav id="nav">
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="login.html">Login</a></li>
+						<li><a href="student-signup.html">Student Sign Up</a></li>
+					</ul>
+				</nav>
+			</header>
+
+			<section class="wrapper style1 special" style="padding-top:4rem;padding-bottom:4rem;">
+				<div class="container">
+					<header class="major">
+						<h2>Join as an Alumni</h2>
+						<p>Step 2: Basic details</p>
+					</header>
+					<div class="box" style="max-width:720px;margin:0 auto;">
+						<form id="alumni-signup-form" onsubmit="return false;">
+							<div class="row gtr-uniform gtr-50">
+								<div class="col-6 col-12-xsmall"><input type="text" name="fullName" placeholder="Full Name" required /></div>
+								<div class="col-6 col-12-xsmall"><input type="text" name="rollNo" placeholder="Roll No." required /></div>
+								<div class="col-6 col-12-xsmall"><input type="text" name="collegeName" placeholder="College Name" required /></div>
+								<div class="col-6 col-12-xsmall">
+									<select name="currentRole" required>
+										<option value="" disabled selected>Currently Working As</option>
+										<option>Software Engineer</option>
+										<option>Hardware Engineer</option>
+										<option>Web Developer</option>
+										<option>App Developer</option>
+										<option>Data Scientist</option>
+										<option>Product Manager</option>
+										<option>Other</option>
+									</select>
+								</div>
+								<div class="col-12"><input type="text" name="address" placeholder="Address" required /></div>
+								<div class="col-12"><button id="alumni-signup-next" class="button primary fit">Continue</button></div>
+							</div>
+						</form>
+						<p style="margin-top:1rem;">You will add contact and set a password on the next step.</p>
+					</div>
+				</div>
+			</section>
+
+			<footer id="footer">
+				<ul class="icons">
+					<li><a href="#" class="icon solid alt fa-envelope"><span class="label">Email</span></a></li>
+				</ul>
+				<ul class="copyright">
+					<li>&copy; Untitled. All rights reserved.</li>
+				</ul>
+			</footer>
+
+		</div>
+
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+		<script src="assets/js/auth.js"></script>
+	</body>
+</html>
