@@ -31,12 +31,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Clean up development files
+        run: |
+          cd Sangam
+          rm -rf node_modules
+          rm -f server.js package*.json .env* *.sqlite
+          rm -rf .qodo
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload only the Sangam directory containing the website
+          # Upload only the cleaned Sangam directory
           path: './Sangam'
       - name: Deploy to GitHub Pages
         id: deployment
